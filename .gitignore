@@ -62,3 +62,5 @@ supabase/.temp/
 
 # MCP server logs
 apps/mcp/logs/
+
+.vercel

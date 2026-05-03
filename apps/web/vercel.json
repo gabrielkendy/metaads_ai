@@ -2,9 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "regions": ["gru1"],
-  "buildCommand": "pnpm install --frozen-lockfile=false && pnpm build:web",
-  "installCommand": "echo 'install via build'",
-  "outputDirectory": "apps/web/.next",
+  "buildCommand": "cd ../.. && pnpm install --frozen-lockfile=false && pnpm build:web",
+  "installCommand": "echo 'install during build'",
+  "outputDirectory": ".next",
   "crons": [
     {
       "path": "/api/cron/meta-sync",
