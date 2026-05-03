@@ -5,11 +5,17 @@
  * tokens de acesso aos recursos protegidos (no nosso caso /api/mcp).
  */
 export const runtime = "nodejs";
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 function getBaseUrl(req: Request): string {
-  const url = new URL(req.url);
-  return `${url.protocol}//${url.host}`;
+  const proto =
+    req.headers.get("x-forwarded-proto") ??
+    new URL(req.url).protocol.replace(":", "");
+  const host =
+    req.headers.get("x-forwarded-host") ??
+    req.headers.get("host") ??
+    new URL(req.url).host;
+  return `${proto}://${host}`;
 }
 
 export async function GET(req: Request) {

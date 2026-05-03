@@ -23,8 +23,14 @@ export const maxDuration = 60;
 const ALLOWED_METHODS = "GET, POST, DELETE, OPTIONS";
 
 function getBaseUrl(req: Request): string {
-  const url = new URL(req.url);
-  return `${url.protocol}//${url.host}`;
+  const proto =
+    req.headers.get("x-forwarded-proto") ??
+    new URL(req.url).protocol.replace(":", "");
+  const host =
+    req.headers.get("x-forwarded-host") ??
+    req.headers.get("host") ??
+    new URL(req.url).host;
+  return `${proto}://${host}`;
 }
 
 function unauthorized(req: Request, message: string) {
