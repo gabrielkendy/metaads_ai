@@ -160,8 +160,11 @@ bun run db:seed          # executa scripts/seed.ts
 ## 🆘 Suporte
 
 - **Docs originais**: pasta `docs/` (PRD, arquitetura, schema, design, MCP spec, roadmap)
-- **Connection guide**: `docs/CONNECTION-GUIDE.md`
-- **Issues**: `https://github.com/<seu-org>/base-trafego-command/issues`
+- **🤖 Claude Desktop setup**: [`docs/claude-desktop/README.md`](docs/claude-desktop/README.md)
+- **🔐 Segurança**: [`docs/SECURITY.md`](docs/SECURITY.md)
+- **Connection guide**: [`docs/CONNECTION-GUIDE.md`](docs/CONNECTION-GUIDE.md)
+- **Deploy guide**: [`docs/DEPLOY-VERCEL.md`](docs/DEPLOY-VERCEL.md)
+- **Issues**: https://github.com/gabrielkendy/metaads_ai/issues
 - **Discord MCP**: discord.gg/anthropic
 - **Discord Supabase**: discord.supabase.com
 
