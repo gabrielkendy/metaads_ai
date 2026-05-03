@@ -11,15 +11,11 @@ const envSchema = z.object({
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
   SUPABASE_ANON_KEY: z.string().min(1).optional(),
   SUPABASE_ENCRYPTION_KEY: z.string().min(16).optional(),
-  META_APP_ID: z.string().optional(),
-  META_APP_SECRET: z.string().optional(),
-  META_API_VERSION: z.string().default("v22.0"),
   ANTHROPIC_API_KEY: z.string().optional(),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
   LOG_PATH: z.string().default("./logs/mcp-server.log"),
   PLATFORM_URL: z.string().url().default("http://localhost:3000"),
   PLATFORM_WEBHOOK_SECRET: z.string().optional(),
-  USE_META_MOCK: z.enum(["true", "false"]).default("true"),
 });
 
 export type Env = z.infer<typeof envSchema>;
@@ -32,15 +28,11 @@ const STUB: Env = {
   SUPABASE_SERVICE_ROLE_KEY: "stub",
   SUPABASE_ANON_KEY: undefined,
   SUPABASE_ENCRYPTION_KEY: undefined,
-  META_APP_ID: undefined,
-  META_APP_SECRET: undefined,
-  META_API_VERSION: "v22.0",
   ANTHROPIC_API_KEY: undefined,
   LOG_LEVEL: "info",
   LOG_PATH: "./logs/mcp-server.log",
   PLATFORM_URL: "http://localhost:3000",
   PLATFORM_WEBHOOK_SECRET: undefined,
-  USE_META_MOCK: "true",
 };
 
 const isNextBuildPhase = process.env.NEXT_PHASE === "phase-production-build";

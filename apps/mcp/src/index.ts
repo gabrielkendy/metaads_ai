@@ -1,6 +1,5 @@
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { logger } from "./lib/logger.js";
-import { env } from "./config/env.js";
 import { createBaseTrafegoServer, serverMeta } from "./server-factory.js";
 
 async function main() {
@@ -8,7 +7,7 @@ async function main() {
     tools: serverMeta.toolsCount,
     resources: serverMeta.resourcesCount,
     prompts: serverMeta.promptsCount,
-    metaMock: env.USE_META_MOCK,
+    mode: "ledger-only", // 100% leitura/escrita no DB. Zero call Meta API.
   });
 
   const server = createBaseTrafegoServer({ source: "stdio" });
