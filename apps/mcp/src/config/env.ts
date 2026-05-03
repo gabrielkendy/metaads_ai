@@ -53,7 +53,18 @@ function loadEnv(): Env {
     _cached = STUB;
     return _cached;
   }
-  const parsed = envSchema.safeParse(process.env);
+  // Fallback: na Vercel as URLs Supabase estão prefixadas com NEXT_PUBLIC_*.
+  // Aceita ambos pra que o mesmo MCP rode em Claude Desktop (vars puras) e
+  // dentro do Next.js como remote connector.
+  const sourceEnv: Record<string, string | undefined> = {
+    ...process.env,
+    SUPABASE_URL:
+      process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL,
+    SUPABASE_ANON_KEY:
+      process.env.SUPABASE_ANON_KEY ??
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  };
+  const parsed = envSchema.safeParse(sourceEnv);
   if (!parsed.success) {
     // Em fallback last-resort, se for um runtime de Next mas as env tiverem
     // problema, deixa o erro estourar com mensagem clara
