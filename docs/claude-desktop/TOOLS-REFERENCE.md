@@ -7,6 +7,12 @@
 ## 🗂️ Índice por categoria
 
 ```
+📦 SYNC EM LOTE (recomendado — eficiente)
+   ├─ bulk_register_meta_data         → estrutura completa de uma vez
+   ├─ get_sync_status                 → "preciso sincronizar?"
+   ├─ log_sync_run                    → registra que rodou um sync
+   └─ list_clients_needing_sync       → quais estão atrasados
+
 🔍 CONSULTA (read-only)
    ├─ list_clients · get_client · get_client_summary
    ├─ list_campaigns · get_campaign
@@ -18,7 +24,7 @@
    ├─ compare_periods · get_audience_breakdown
    └─ list_reports
 
-📝 REGISTRO (modo ledger — sem chamar Meta API)
+📝 REGISTRO GRANULAR (1 entidade por vez)
    ├─ link_meta_account
    ├─ register_campaign · register_ad_set · register_ad
    ├─ record_performance_snapshot
@@ -39,6 +45,144 @@
 ```
 
 > 💡 **Dica**: prefira tools de REGISTRO (`register_*`) quando estiver usando junto com MCP oficial Meta. Use tools de EXECUÇÃO só quando quiser que o nosso MCP chame Meta API direto (modo standalone, sem MCP oficial).
+
+---
+
+## 📦 SYNC EM LOTE (NOVO — use sempre que possível)
+
+### `bulk_register_meta_data` ⭐
+
+Registra estrutura completa de campanhas+ad_sets+ads+métricas em UMA chamada.
+
+```
+Args: {
+  client_id: UUID,
+  meta_account_id: UUID,            // UUID interno (use get_client_meta_account_uuid)
+  campaigns: [{
+    meta_campaign_id, name, objective, status, daily_budget,
+    metrics: { impressions, clicks, spend, conversions, conversion_value, ... },
+    ad_sets: [{
+      meta_ad_set_id, name, status, daily_budget, optimization_goal, targeting,
+      metrics: { ... },
+      ads: [{
+        meta_ad_id, name, headline, body, cta_type, link_url, image_url,
+        status, metrics: { ... }
+      }]
+    }]
+  }],
+  sync_period_start?, sync_period_end?,
+  reasoning: string
+}
+Returns: { campaigns_synced, ad_sets_synced, ads_synced, snapshots_created, errors_count }
+```
+
+**Quando usar**: depois de puxar tudo do MCP oficial Meta. UMA chamada vs 50+ chamadas granulares.
+
+**Exemplo**:
+```js
+bulk_register_meta_data({
+  client_id: "5f08f91d-...",
+  meta_account_id: "uuid-interno-meta-account",
+  campaigns: [
+    {
+      meta_campaign_id: "120211234567890",
+      name: "JB-Conv-Maio",
+      objective: "OUTCOME_SALES",
+      status: "active",
+      daily_budget: 200,
+      metrics: { impressions: 12500, clicks: 342, spend: 458.32,
+                 conversions: 12, conversion_value: 2400 },
+      ad_sets: [
+        {
+          meta_ad_set_id: "120211234567891",
+          name: "AS-Mulheres-25-35",
+          status: "active",
+          daily_budget: 200,
+          optimization_goal: "OFFSITE_CONVERSIONS",
+          targeting: { age_min: 25, age_max: 35, genders: ["female"] },
+          metrics: { impressions: 12500, clicks: 342, spend: 458.32 },
+          ads: [
+            {
+              meta_ad_id: "120211234567892",
+              name: "JB-Conv-Trans12sem",
+              headline: "Transforme seu corpo em 12 semanas",
+              body: "Plano completo...",
+              cta_type: "SIGN_UP",
+              link_url: "https://justburn.com.br/lp",
+              image_url: "https://...",
+              status: "active",
+              metrics: { impressions: 12500, clicks: 342, spend: 458.32,
+                         conversions: 12, conversion_value: 2400 }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  reasoning: "Sync matinal automático — dia 03/05/2026"
+})
+```
+
+### `get_sync_status`
+
+Retorna estado atual do sync de um cliente.
+
+```
+Args: { client_id: UUID }
+Returns: {
+  has_meta_account: bool,
+  meta_account_uuid: UUID,             // pra usar em bulk_register
+  meta_account_id: string,             // ID Meta externo
+  meta_account_name: string,
+  current_balance: number,
+  last_synced_at: ISO timestamp,
+  minutes_since_last_sync: number,
+  campaigns_registered: number,
+  ads_registered: number,
+  last_metrics_at: ISO timestamp,
+  metrics_age_minutes: number,
+  needs_full_sync: bool,               // > 6h sem sync
+  needs_metrics_refresh: bool          // métricas > 1h
+}
+```
+
+**Use SEMPRE antes de operar** — evita decidir com dados velhos.
+
+### `log_sync_run`
+
+Registra que você executou um sync (sucesso/falha).
+
+```
+Args: {
+  client_id?: UUID,
+  scope: "single_client" | "all_clients" | "campaign" | "anomaly_check",
+  status: "success" | "partial" | "failed",
+  summary: string (5-500 chars),
+  stats?: { count_x: 5, ... },
+  triggered_by: "manual" | "cowork" | "scheduled" | "webhook"
+}
+```
+
+**Use SEMPRE no final de qualquer ciclo de sync**. Aparece no audit log da plataforma.
+
+### `list_clients_needing_sync`
+
+Lista clientes ativos cujo sync está desatualizado.
+
+```
+Args: { threshold_hours?: 6, include_never_synced?: true }
+Returns: {
+  needs_sync: [{
+    client_id, client_slug, client_name,
+    meta_account_uuid, meta_account_id, meta_account_name,
+    last_synced_at, minutes_overdue
+  }],
+  total: number,
+  threshold_hours: number
+}
+```
+
+**Use no INÍCIO de qualquer rotina mass de sync**. Pula clientes que não precisam.
 
 ---
 

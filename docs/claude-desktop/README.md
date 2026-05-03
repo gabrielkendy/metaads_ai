@@ -10,9 +10,10 @@
 |---|---|---|---|
 | **1** | [`QUICK-START.md`](./QUICK-START.md) | 10 min | Setup passo-a-passo do Claude Desktop |
 | **2** | [`SYSTEM-PROMPT.md`](./SYSTEM-PROMPT.md) | 5 min | Cole no Project Custom Instructions |
-| **3** | [`WORKFLOWS.md`](./WORKFLOWS.md) | leitura | Anexa ao Project como conhecimento |
-| **4** | [`TOOLS-REFERENCE.md`](./TOOLS-REFERENCE.md) | leitura | Anexa ao Project — referência das 44 tools |
-| **5** | [`REALTIME.md`](./REALTIME.md) | leitura | Como funciona sync tempo real (debug) |
+| **3** | [`COWORK-TASKS.md`](./COWORK-TASKS.md) | 15 min | ⏰ 5 tarefas agendadas (sync diário, alerts, relatórios) |
+| **4** | [`WORKFLOWS.md`](./WORKFLOWS.md) | leitura | Anexa ao Project como conhecimento |
+| **5** | [`TOOLS-REFERENCE.md`](./TOOLS-REFERENCE.md) | leitura | Anexa ao Project — referência das 48 tools |
+| **6** | [`REALTIME.md`](./REALTIME.md) | leitura | Como funciona sync tempo real (debug) |
 
 ---
 

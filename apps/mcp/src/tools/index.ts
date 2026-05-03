@@ -9,11 +9,13 @@ import { alertsTools } from "./alerts.js";
 import { approvalsTools } from "./approvals.js";
 import { reportsTools } from "./reports.js";
 import { registerTools } from "./register.js";
+import { syncTools } from "./sync.js";
 
 export const allTools: AnyTool[] = [
   ...clientsTools,
   ...metaAccountsTools,
-  ...registerTools, // ← modo ledger: registra ações que MCP oficial Meta executou
+  ...syncTools, // ← bulk_register, get_sync_status, log_sync_run, list_clients_needing_sync
+  ...registerTools, // ← register_campaign, register_ad_set, register_ad (granular)
   ...campaignsTools,
   ...adSetsTools,
   ...adsTools,
