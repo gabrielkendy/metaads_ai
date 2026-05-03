@@ -63,12 +63,18 @@ importers:
 
   apps/web:
     dependencies:
+      '@base-trafego/mcp':
+        specifier: workspace:*
+        version: link:../mcp
       '@base-trafego/shared':
         specifier: workspace:*
         version: link:../../packages/shared
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.75.0(react@19.2.5))
+      '@modelcontextprotocol/sdk':
+        specifier: ^1.0.4
+        version: 1.29.0(zod@3.25.76)
       '@radix-ui/react-avatar':
         specifier: ^1.1.2
         version: 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)

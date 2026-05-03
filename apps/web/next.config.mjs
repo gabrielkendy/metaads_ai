@@ -14,7 +14,8 @@ const nextConfig = {
       bodySizeLimit: "10mb",
     },
   },
-  transpilePackages: ["@base-trafego/shared"],
+  transpilePackages: ["@base-trafego/shared", "@base-trafego/mcp"],
+  serverExternalPackages: ["winston", "@modelcontextprotocol/sdk"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "*.supabase.co" },
