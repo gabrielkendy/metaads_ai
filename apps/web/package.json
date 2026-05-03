@@ -33,7 +33,12 @@
     "@radix-ui/react-tooltip": "^1.1.6",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.47.10",
+    "@tailwindcss/postcss": "^4.0.0",
     "@tanstack/react-query": "^5.62.16",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.4",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -43,6 +48,7 @@
     "next": "^15.1.4",
     "next-themes": "^0.4.4",
     "nuqs": "^2.2.3",
+    "postcss": "^8.4.49",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
@@ -50,20 +56,14 @@
     "resend": "^4.0.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@tailwindcss/postcss": "^4.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
-    "@types/node": "^22.10.5",
-    "@types/react": "^19.0.4",
-    "@types/react-dom": "^19.0.2",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.7.3",
     "vitest": "^2.1.8"
   }
 }
