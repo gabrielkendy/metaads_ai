@@ -1,14 +1,17 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/index.ts"],
+  entry: {
+    index: "src/index.ts",
+    "server-factory": "src/server-factory.ts",
+  },
   format: ["esm"],
   outDir: "dist",
   target: "node20",
-  splitting: false,
+  splitting: true, // chunks compartilhados entre os 2 entries (lib/, tools/, etc.)
   sourcemap: true,
   clean: true,
-  // bundle workspace deps no output (não dependem de node_modules em runtime)
+  dts: true, // emite .d.ts pra exports tipados via subpath
   noExternal: ["@base-trafego/shared"],
   external: [
     "@modelcontextprotocol/sdk",
@@ -18,8 +21,5 @@ export default defineConfig({
     "dotenv",
     "zod",
   ],
-  banner: {
-    js: "#!/usr/bin/env node",
-  },
   shims: false,
 });

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { logger } from "./lib/logger.js";
 import { env } from "./config/env.js";

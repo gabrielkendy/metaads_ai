@@ -6,16 +6,12 @@
   "main": "./dist/index.js",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
+      "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
     "./server": {
-      "types": "./src/server-factory.ts",
-      "default": "./src/server-factory.ts"
-    },
-    "./tools": {
-      "types": "./src/tools/index.ts",
-      "default": "./src/tools/index.ts"
+      "types": "./dist/server-factory.d.ts",
+      "default": "./dist/server-factory.js"
     }
   },
   "bin": {
