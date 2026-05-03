@@ -80,6 +80,8 @@ export async function updateSession(request: NextRequest) {
     "/api/auth",
     "/api/health",
     "/api/mcp", // remote MCP connector — auth via Bearer token na propria rota
+    "/api/oauth", // OAuth 2.1 endpoints pro MCP custom connector (claude.ai)
+    "/.well-known", // OAuth Authorization Server / Resource metadata discovery
   ];
   if (publicPaths.some((p) => path === p || path.startsWith(`${p}/`))) {
     return supabaseResponse;
