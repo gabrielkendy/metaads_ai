@@ -79,6 +79,7 @@ export async function updateSession(request: NextRequest) {
     "/api/cron",
     "/api/auth",
     "/api/health",
+    "/api/mcp", // remote MCP connector — auth via Bearer token na propria rota
   ];
   if (publicPaths.some((p) => path === p || path.startsWith(`${p}/`))) {
     return supabaseResponse;
