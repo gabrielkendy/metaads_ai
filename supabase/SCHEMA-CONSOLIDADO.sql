@@ -1,5 +1,5 @@
 -- ════════════════════════════════════════════════════════════════════
--- BASE TRAFEGO COMMAND - Schema consolidado (cole TODO no SQL Editor)
+-- BASE TRAFEGO COMMAND - Schema consolidado
 -- ════════════════════════════════════════════════════════════════════
 
 -- ───────────────────────────────────────────────────
@@ -900,7 +900,7 @@ create policy "admins_full_client_users" on client_users
 create policy "users_view_own_memberships" on client_users
   for select using (user_id = auth.uid());
 
--- POLICIES genéricas pra tabelas client-scoped
+-- POLICIES genéricas pra tabelas client-scoped (todas têm client_id direto)
 do $$
 declare
   t text;
@@ -909,7 +909,6 @@ begin
     select unnest(array[
       'meta_accounts',
       'campaigns',
-      'ad_sets',
       'ads',
       'creatives_assets',
       'performance_snapshots',
@@ -924,13 +923,25 @@ begin
     execute format('
       create policy "admins_full_%I" on public.%I
         for all using (public.is_admin());
-      
+
       create policy "client_users_view_%I" on public.%I
         for select using (public.has_client_access(client_id));
     ', t, t, t, t);
   end loop;
 end;
 $$;
+
+-- POLICIES — AD_SETS (sem client_id direto — joinar via campaign)
+create policy "admins_full_ad_sets" on public.ad_sets
+  for all using (public.is_admin());
+
+create policy "client_users_view_ad_sets" on public.ad_sets
+  for select using (
+    campaign_id in (
+      select id from public.campaigns
+      where public.has_client_access(client_id)
+    )
+  );
 
 -- POLICIES — AUDIT_LOGS (admin only read, system writes)
 create policy "admins_view_audit_logs" on audit_logs
