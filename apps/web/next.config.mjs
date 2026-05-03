@@ -1,7 +1,10 @@
 import path from "node:path";
-import type { NextConfig } from "next";
+import { fileURLToPath } from "node:url";
 
-const nextConfig: NextConfig = {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   outputFileTracingRoot: path.join(__dirname, "..", ".."),
@@ -20,6 +23,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "graph.facebook.com" },
       { protocol: "https", hostname: "platform-lookaside.fbsbx.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
   async headers() {
