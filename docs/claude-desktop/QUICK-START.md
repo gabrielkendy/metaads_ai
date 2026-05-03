@@ -117,8 +117,8 @@ Algum específico que quer analisar?
 
 Pra ter contexto persistente sem precisar repetir o system prompt em cada conversa:
 
-1. Claude Desktop → painel esquerdo → **Projects** → **+ New Project**
-2. **Name**: `BASE Tráfego Command`
+1. Claude Desktop → painel esquerdo → **Projects** → **+ New Project** (ou abre o existente)
+2. **Name**: `Meta Ads AI` (ou outro — o nome em si não muda comportamento)
 3. **Description**: `Operação Meta Ads multi-cliente da Agência BASE`
 4. Clica **Create Project**
 
@@ -231,7 +231,7 @@ Pra emails saírem com a marca BASE em vez de `noreply@mail.app.supabase.io`:
 ### Toda manhã (5 min)
 
 ```
-Você abre Claude Desktop → projeto BASE Tráfego Command → digita:
+Você abre Claude Desktop → projeto Meta Ads AI → digita:
 
 "Bom dia, faz um sync geral e me passa o resumo da operação"
 ```

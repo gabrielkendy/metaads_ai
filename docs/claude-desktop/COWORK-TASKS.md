@@ -22,7 +22,7 @@ Resultado: você abre Claude de manhã e já encontra **sync feito + relatório 
 3. Define:
    - **Name**: nome curto
    - **Schedule**: cron expression OU intervalo
-   - **Project**: BASE Tráfego Command (assim usa o System Prompt)
+   - **Project**: `Meta Ads AI` (importante! seleciona EXATAMENTE o nome do teu projeto Claude — assim Cowork usa o System Prompt + arquivos anexados)
    - **Prompt**: cola o texto de cada tarefa abaixo
 
 > ⚠️ Cowork pode mudar de UI conforme Anthropic atualiza. Se não achar, procure por **"Scheduled Tasks"** ou **"Automations"** ou **"Background Tasks"**.
@@ -228,7 +228,7 @@ Esta NÃO é agendada — é template pra você invocar manualmente quando adici
 
 ### Como invocar
 
-No Claude Desktop, abre conversa no projeto BASE e cola:
+No Claude Desktop, abre conversa no projeto Meta Ads AI e cola:
 
 ```
 Onboarding cliente novo:

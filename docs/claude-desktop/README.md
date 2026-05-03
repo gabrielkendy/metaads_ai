@@ -65,7 +65,7 @@ docs/claude-desktop/
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ 📁 Claude Project: "BASE Tráfego Command"                    │
+│ 📁 Claude Project: "Meta Ads AI" (ou nome de sua escolha)    │
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
 │  📝 Custom Instructions:                                     │
@@ -230,10 +230,10 @@ Marca cada um quando rodar:
 
 | Projeto | Custom Instructions adicional |
 |---|---|
-| `BASE — Operação` | (default — `SYSTEM-PROMPT.md`) |
-| `BASE — Análise profunda` | "modo analítico: 3 níveis de profundidade, benchmarks, hipóteses" |
-| `BASE — Onboarding` | "modo onboarding: foque coleta de info da marca + 1ª camp teste" |
-| `BASE — Crise` | "modo emergência: pause antes de ajustar, estabilize antes de otimizar" |
+| `Meta Ads AI` | (default — `SYSTEM-PROMPT.md`) |
+| `Meta Ads AI — Análise profunda` | "modo analítico: 3 níveis de profundidade, benchmarks, hipóteses" |
+| `Meta Ads AI — Onboarding` | "modo onboarding: foque coleta de info da marca + 1ª camp teste" |
+| `Meta Ads AI — Crise` | "modo emergência: pause antes de ajustar, estabilize antes de otimizar" |
 
 Em cada projeto, ANEXA todos os 5 docs (mesmos arquivos, contexto compartilhado).
 

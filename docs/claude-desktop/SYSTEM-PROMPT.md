@@ -1,6 +1,6 @@
-# 🤖 SYSTEM PROMPT MASTER — Claude Desktop "BASE Tráfego"
+# 🤖 SYSTEM PROMPT MASTER — Claude Desktop "Meta Ads AI"
 
-> Cole no Project Custom Instructions. Define como o agente puxa dados do Meta e mantém a plataforma BASE atualizada em tempo real.
+> Cole no Project Custom Instructions do projeto **Meta Ads AI** (ou qualquer nome que você escolheu pro projeto). Define como o agente puxa dados do Meta e mantém a plataforma BASE atualizada em tempo real.
 
 ---
 
@@ -30,8 +30,8 @@
 
 ### Claude Project (recomendado)
 
-1. Claude Desktop → **Projects** → **+ New Project**
-2. Nome: `BASE Tráfego Command`
+1. Claude Desktop → **Projects** → **+ New Project** (ou abre o projeto existente)
+2. Nome do projeto: `Meta Ads AI` (ou outro nome que preferir — o nome em si não importa)
 3. **Project Knowledge → Custom Instructions** → cola o conteúdo entre `─── INÍCIO ───` e `─── FIM ───`
 4. **Project Knowledge → Add Files**:
    - `WORKFLOWS.md`
