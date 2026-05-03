@@ -1,0 +1,80 @@
+project_id = "base-trafego-command"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[realtime]
+enabled = true
+ip_version = "IPv4"
+
+[storage]
+enabled = true
+file_size_limit = "50MiB"
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = [
+  "http://localhost:3000/auth/callback",
+  "https://command.agenciabase.tech/auth/callback"
+]
+jwt_expiry = 3600
+enable_signup = true
+enable_anonymous_sign_ins = false
+enable_manual_linking = true
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+double_confirm_changes = true
+secure_password_change = true
+
+[auth.email.template.invite]
+subject = "Você foi convidado para o BASE Tráfego Command"
+
+[auth.email.template.confirmation]
+subject = "Confirme seu acesso ao BASE Tráfego Command"
+
+[auth.email.template.recovery]
+subject = "Recupere seu acesso ao BASE Tráfego Command"
+
+[auth.email.template.magic_link]
+subject = "Seu link mágico — BASE Tráfego Command"
+
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_CLIENT_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+[edge_runtime]
+enabled = true
+inspector_port = 8083
+
+[functions.meta-webhook-receiver]
+verify_jwt = false
+
+[functions.generate-report]
+verify_jwt = true
+
+[functions.send-notification]
+verify_jwt = true
+
+[functions.meta-sync-cron]
+verify_jwt = true
+
+[functions.claude-action-logger]
+verify_jwt = true

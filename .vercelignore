@@ -1,0 +1,9 @@
+node_modules
+.next
+.turbo
+dist
+docs
+supabase/migrations
+supabase/seed.sql
+*.md
+!README.md

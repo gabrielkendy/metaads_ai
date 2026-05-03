@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+.yarn/
+bun.lockb
+
+# Build artifacts
+.next/
+out/
+build/
+dist/
+.turbo/
+
+# Env
+.env
+.env.local
+.env*.local
+.env.production
+.env.development
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+!.vscode/settings.json.example
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Misc
+.vercel/
+.netlify/
+.cache/
+*.pem
+
+# Configs locais com secrets
+local-config/
+claude_desktop_config.json
+claude_desktop_config.template.json
+ACAO-MANUAL-KENDY.md
+
+# Supabase
+supabase/.branches/
+supabase/.temp/
+
+# MCP server logs
+apps/mcp/logs/
